@@ -156,9 +156,7 @@ if __name__ == '__main__':
     if not os.path.exists(ckpt_dir_save):
         ckpt_dir_save = '/kaggle/working/'
     ckpt_file = 'ckpt_run-xx.pt'
-    # with open('wandb_key.txt', 'r') as file:
-    #     wandb_key = file.read()
-    wandb.login(key='95cb6fba4e394f1779f2eb1151f12c0b77c0765b')
+    wandb.login(key=os.environ.get('WANDB_KEY'))
     config_keys = [k for k, v in globals().items() if not k.startswith('_') and isinstance(v, (int, float, bool, str))]
     wandb_config = {k: globals()[k] for k in config_keys}
     if init_from == 'scratch':
